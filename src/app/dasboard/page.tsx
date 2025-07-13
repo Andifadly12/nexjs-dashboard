@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import RevenueCart from "./revenue-Cart";
+import LatestInvoices from "./latest-invoices";
 
 export default function page() {
   return (
@@ -20,6 +21,10 @@ export default function page() {
         <div className="col-span-1 md:col-span-2 lg:col-span-4">
           <p className="text-sm font-medium text-black pb-2">Recent Revenue</p>
           <RevenueCart />
+        </div>
+        <div className="col-span-1 md:col-span-2 lg:col-span-4">
+          <p className="text-sm font-medium text-black pb-2">Latest Invoices</p>
+          <LatestInvoices />
         </div>
       </div>
     </main>
