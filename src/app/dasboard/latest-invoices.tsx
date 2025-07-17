@@ -28,8 +28,11 @@ export default function LatestInvoices() {
   return (
     <main>
       <div className="rounded-lg border bg-white p-8 shadow-sm w-full max-w-xl">
-        {invoices.map((invoice) => (
-          <div className="space-content-between flex items-center justify-between mb-4">
+        {invoices.map((invoice, index) => (
+          <div
+            key={index}
+            className="space-content-between flex items-center justify-between mb-4"
+          >
             <div className="flex items-center justify-start gap-4">
               <div>
                 <img

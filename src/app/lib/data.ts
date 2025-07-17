@@ -1,5 +1,10 @@
 // lib/api.ts
-
+import {
+  FaMoneyBillWave,
+  FaHourglassHalf,
+  FaFileInvoice,
+  FaUsers,
+} from "react-icons/fa";
 export const fetchRevenueData = async () => {
   // Simulating a fetch call to get revenue data
   return [
@@ -65,5 +70,14 @@ export const fetchLatestInvoices = async () => {
       status: "paid",
       date: "2023-10-05",
     },
+  ];
+};
+
+export const fetchCustomers = async () => {
+  return [
+    { label: "Collected", value: "$1,106.36", icon: FaMoneyBillWave },
+    { label: "Pending", value: "$1,339.11", icon: FaHourglassHalf },
+    { label: "Total Invoices", value: "15", icon: FaFileInvoice },
+    { label: "Total Customers", value: "8", icon: FaUsers },
   ];
 };

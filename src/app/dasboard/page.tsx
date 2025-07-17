@@ -2,13 +2,14 @@
 import React from "react";
 import RevenueCart from "./revenue-Cart";
 import LatestInvoices from "./latest-invoices";
+import Cart from "./cards";
 
 export default function page() {
   return (
     <main>
       <h1 className={`mb-4 text-xl md:text-2xl text-black`}>Dashboard</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {/* <Card title="Collected" value={totalPaidInvoices} type="collected" /> */}
+        <Cart />
         {/* <Card title="Pending" value={totalPendingInvoices} type="pending" /> */}
         {/* <Card title="Total Invoices" value={numberOfInvoices} type="invoices" /> */}
         {/* <Card
