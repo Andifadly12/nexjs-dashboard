@@ -1,11 +1,17 @@
-import postgres from "postgres";
+// app/actions.ts
+"use server";
+import { neon } from "@neondatabase/serverless";
 
-const sql = postgres(process.env.DATABASE_URL!, { ssl: "require" });
-export default sql;
+export async function getData() {
+  const sql = neon(process.env.DATABASE_URL!);
+  const data = await sql`...`;
+  return data;
+}
 
-export const getCustomers = async () => {
-  return sql`
-    SELECT id, name, email, image_url
-    FROM customer
-  `;
+type Customer = {
+  id: number;
+  name: string;
+  email: string;
+  image: string;
+  revenue: number;
 };

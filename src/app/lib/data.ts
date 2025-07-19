@@ -22,6 +22,8 @@ export const fetchRevenueData = async () => {
     { id: "12", month: "Dec", year: 2001, revenue: 35000 },
   ];
 };
+// contumrs : name , email, image, revenue, id
+// nvoices : customer_id, amount, status, date
 
 export const fetchLatestInvoices = async () => {
   return [

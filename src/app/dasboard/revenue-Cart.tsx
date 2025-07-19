@@ -1,5 +1,4 @@
-"use client";
-
+"use clinent";
 import {
   BarChart,
   Bar,
@@ -10,7 +9,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useEffect, useState } from "react";
-import { fetchRevenueData } from "../lib/data";
+
+import { get } from "http";
+import { getData } from "../query/route";
 
 interface RevenueItem {
   month: string;
@@ -21,15 +22,17 @@ export default function RevenueChart() {
   const [formattedData, setFormattedData] = useState<RevenueItem[]>([]);
 
   useEffect(() => {
-    const loadData = async () => {
-      const data = await fetchRevenueData();
-      const recent12 = data.map((item) => ({
-        month: item.month,
-        revenue: item.revenue,
-      }));
-      setFormattedData(recent12);
-    };
-    loadData();
+    const data = getData();
+    console.log(data);
+    // const loadData = async () => {
+    //   const data = await fetchRevenueData();
+    //   const recent12 = data.map((item) => ({
+    //     month: item.month,
+    //     revenue: item.revenue,
+    //   }));
+    //   setFormattedData(recent12);
+    // };
+    // loadData();
   }, []);
 
   return (
