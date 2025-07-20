@@ -24,13 +24,12 @@ export default function RevenueChart() {
     const fetchData = async () => {
       const response = await getInvoicesGrafik();
       const data = response.map((item: any) => ({
-        month: item.date,
+        month: new Date(item.date).toLocaleString("default", { month: "long" }),
         revenue: item.amount,
       }));
       setFormattedData(data);
-      console.log("Formatted Data:", data);
+      console.log("Formatted Data:", data[0].month);
     };
-
     fetchData();
   }, []);
 
