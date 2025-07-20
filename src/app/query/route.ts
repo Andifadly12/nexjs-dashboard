@@ -28,3 +28,20 @@ export const getInvoicesGrafik = async (): Promise<Invoice[]> => {
   const rows = await sql`SELECT * FROM invoices `;
   return rows as Invoice[];
 };
+
+export const getInvoiceStats = async () => {
+  const [collected] =
+    await sql`SELECT SUM(amount) as total FROM invoices WHERE status = 'paid'`;
+  const [pending] =
+    await sql`SELECT SUM(amount) as total FROM invoices WHERE status = 'pending'`;
+  const [totalInvoices] = await sql`SELECT COUNT(*) as count FROM invoices`;
+  const [totalCustomers] =
+    await sql`SELECT COUNT(DISTINCT customer_id) as count FROM invoices`;
+
+  return {
+    collected: collected.total ?? 0,
+    pending: pending.total ?? 0,
+    totalInvoices: totalInvoices.count ?? 0,
+    totalCustomers: totalCustomers.count ?? 0,
+  };
+};

@@ -1,28 +1,55 @@
-import React from "react";
-import { fetchCustomers } from "../lib/data";
+import React, { useEffect, useState } from "react";
 
-type Stat = {
+import { getInvoiceStats } from "../query/route";
+import { DollarSign, Clock, FileText, Users } from "lucide-react";
+type StatItem = {
   label: string;
   value: string;
-  icon: React.ReactNode; // Assuming icon is a React node
+  icon: React.ReactNode;
 };
 
 export default function DashboardCards() {
-  const [stats, setStats] = React.useState<Stat[]>([]);
+  const [stats, setStats] = useState<StatItem[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
-      // Replace this with your actual API endpoint or data-fetching logic
-      const response = await fetchCustomers();
-      const data = response.map((data) => ({
-        label: data.label,
-        value: data.value,
-        icon: React.createElement(data.icon), // Convert IconType to ReactNode
-      }));
+      const response = await getInvoiceStats();
+
+      const data: StatItem[] = [
+        {
+          label: "Collected",
+          value: formatUSD(response.collected),
+          icon: <DollarSign />,
+        },
+        {
+          label: "Pending",
+          value: formatUSD(response.pending),
+          icon: <Clock />,
+        },
+        {
+          label: "Total Invoices",
+          value: response.totalInvoices.toString(),
+          icon: <FileText />,
+        },
+        {
+          label: "Total Customers",
+          value: response.totalCustomers.toString(),
+          icon: <Users />,
+        },
+      ];
+
       setStats(data);
     };
+
     fetchData();
   }, []);
+
+  const formatUSD = (amount: number) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(amount / 100); // Assuming amount is in cents
+
   return (
     <div className="flex content-row p-4 w-500 h-full gap-4">
       {stats.map((stat, index) => (
