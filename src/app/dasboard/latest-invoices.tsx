@@ -1,5 +1,7 @@
 import React from "react";
 import { fetchLatestInvoices } from "../lib/data";
+import { get } from "http";
+import { getCustomers } from "../query/route";
 
 interface rwvenueData {
   name: string;
@@ -13,12 +15,12 @@ export default function LatestInvoices() {
   React.useEffect(() => {
     const fetchDataInvoices = async () => {
       // Replace this with your actual API endpoint or data-fetching logic
-      const response = await fetchLatestInvoices();
+      const response = await getCustomers();
       const resultdata = response.map((data) => ({
         name: data.name,
         email: data.email,
         image: data.image,
-        amount: data.amount,
+        amount: data.revenue,
       }));
       setInvoices(resultdata);
     };
@@ -40,7 +42,7 @@ export default function LatestInvoices() {
                   alt="Invoice Image"
                   height={20}
                   width={30}
-                  className="h-10 w-10 rounded-full object-cover mask-circle"
+                  className="h-10 w-10 rounded-full ob  ject-cover mask-circle"
                 />
               </div>
               <div>

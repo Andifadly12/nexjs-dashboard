@@ -20,11 +20,11 @@ type Invoice = {
   date: string;
 };
 export const getCustomers = async (): Promise<Customer[]> => {
-  const rows = await sql`SELECT * FROM customers`;
+  const rows = await sql`SELECT * FROM customers lIMIT 5`;
   return rows as Customer[];
 };
 
 export const getInvoicesGrafik = async (): Promise<Invoice[]> => {
-  const rows = await sql`SELECT * FROM invoices`;
+  const rows = await sql`SELECT * FROM invoices `;
   return rows as Invoice[];
 };
