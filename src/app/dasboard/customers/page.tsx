@@ -38,6 +38,12 @@ export default function page() {
           type="file"
           className="text-black border border-gray-700 text-center p-2 "
         />
+        <button
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors flex mt-4"
+        >
+          Create Customers
+        </button>
       </form>
     </div>
   );
